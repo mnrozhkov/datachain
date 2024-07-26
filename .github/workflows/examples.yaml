@@ -81,15 +81,19 @@ jobs:
         source ${{ matrix.dir }}/.venv/bin/activate
         chmod +x ./tests/examples/test_notebooks.sh
         ./tests/examples/test_notebooks.sh -d ${{ matrix.dir }}
-      shell: bash
-
-    - name: Commit & push changes in Jupyter Notebooks
-      if: env.IPYNB_EXAMPLES_FOUND == 'true'
-      run: |
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git commit -am "Update Jupyter Notebooks"
         git push
+      shell: bash
+
+    # - name: Commit & push changes in Jupyter Notebooks
+    #   if: env.IPYNB_EXAMPLES_FOUND == 'true'
+    #   run: |
+    #     git config --global user.name "${{ github.actor }}"
+    #     git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+    #     git commit -am "Update Jupyter Notebooks"
+    #     git push
 
     # Test .py scripts designed for Studio (in scripts/ dir)
     - name: Test .py scripts
