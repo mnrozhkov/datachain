@@ -84,14 +84,11 @@ jobs:
       shell: bash
 
     - name: Commit & push changes in Jupyter Notebooks
-      if: github.event_name == 'push'
-      env:
-        CI_COMMIT_AUTHOR: ${{ github.actor }}
-        CI_COMMIT_MESSAGE: "Update Jupyter Notebooks"
+      if: env.IPYNB_EXAMPLES_FOUND == 'true'
       run: |
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-        git commit -am "${{ env.CI_COMMIT_MESSAGE }}"
+        git commit -am "Update Jupyter Notebooks"
         git push
 
     # Test .py scripts designed for Studio (in scripts/ dir)
