@@ -11,6 +11,7 @@ on:
     branches:
       - main
       - test-examples-ci 
+      - test-examples-ci-DEV
 
 jobs:
   test-notebooks:
